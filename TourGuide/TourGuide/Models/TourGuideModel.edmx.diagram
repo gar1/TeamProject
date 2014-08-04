@@ -5,9 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1dd5735f7e424b2fa1aef973340687c2" Name="Diagram1">
-        <EntityTypeShape EntityType="TourGuideModel.Hotel" Width="1.5" PointX="5.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourGuideModel.Location" Width="1.5" PointX="3.125" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TourGuideModel.Restaurant" Width="1.5" PointX="0.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourGuideModel.Hotel" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourGuideModel.Location" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TourGuideModel.Restaurant" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <AssociationConnector Association="TourGuideModel.FK_Hotel_Location" ManuallyRouted="false" />
         <AssociationConnector Association="TourGuideModel.FK_Restaurant_Location" ManuallyRouted="false" />
       </Diagram>
