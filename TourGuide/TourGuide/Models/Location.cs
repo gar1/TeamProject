@@ -11,6 +11,7 @@ namespace TourGuide.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Location
     {
@@ -21,6 +22,7 @@ namespace TourGuide.Models
         }
     
         public int ID { get; set; }
+        [Display(Name="City")]
         public string Name { get; set; }
         public string State { get; set; }
     

@@ -11,14 +11,16 @@ namespace TourGuide.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
     public partial class Hotel
     {
         public int ID { get; set; }
         public int CityID { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
+        [Display(Name="Zip Code")]
         public Nullable<int> ZipCode { get; set; }
+        [Display(Name="Phone Number")]
         public string Phone { get; set; }
         public string URL { get; set; }
         public Nullable<int> Rating { get; set; }
