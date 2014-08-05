@@ -24,7 +24,9 @@ namespace TourGuide.Models
         public string Phone { get; set; }
         public string URL { get; set; }
         public Nullable<int> Rating { get; set; }
+        [Display(Name="Latitude")]
         public Nullable<decimal> Lat { get; set; }
+        [Display(Name="Longitude")]
         public Nullable<decimal> Long { get; set; }
     
         public virtual Location Location { get; set; }
