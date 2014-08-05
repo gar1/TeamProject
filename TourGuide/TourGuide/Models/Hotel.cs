@@ -12,7 +12,7 @@ namespace TourGuide.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    public partial class Hotel
+    public partial class  Hotel
     {
         public int ID { get; set; }
         public int CityID { get; set; }
