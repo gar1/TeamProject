@@ -14,12 +14,25 @@ namespace TourGuide.Controllers
     {
         private TourGuideEntities db = new TourGuideEntities();
 
+
         // GET: Restaurant
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
-            var restaurants = db.Restaurants.Include(r => r.Location);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var restaurants = from r in db.Restaurants
+                           select r;
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    restaurants = restaurants.OrderByDescending(r => r.Name);
+                    break;
+                default:
+                    restaurants = restaurants.OrderBy(r => r.Name);
+                    break;
+            }
             return View(restaurants.ToList());
         }
+
 
         // GET: Restaurant/Details/5
         public ActionResult Details(int? id)
