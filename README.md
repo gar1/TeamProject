@@ -1,4 +1,1 @@
-TeamProject
-===========
-
-Initial Commit
+Our project will act as a guide to hotels and restaurants to specific cities. You will be able to search, sort, and filter by specific city names, hotel names and restaurant names. There will also be added URL links to direct users to the hotels and restaurants in the cities they are searching. 
