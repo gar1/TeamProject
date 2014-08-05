@@ -15,9 +15,26 @@ namespace TourGuide.Controllers
         private TourGuideEntities db = new TourGuideEntities();
 
         // GET: Hotel
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string searchString)
         {
-            var hotels = db.Hotels.Include(h => h.Location);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            var hotels = from h in db.Hotels
+                         select h;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                hotels = hotels.Where(h =>
+                  h.Name.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    hotels = hotels.OrderByDescending(h => h.Name);
+                    break;
+                default:
+                    hotels = hotels.OrderBy(h => h.Name);
+                    break;
+            }
+
             return View(hotels.ToList());
         }
 
@@ -57,7 +74,7 @@ namespace TourGuide.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.CityID = new SelectList(db.Locations, "ID", "Name",  hotel.CityID);
+            ViewBag.CityID = new SelectList(db.Locations, "ID", "Name", hotel.CityID);
             return View(hotel);
         }
 
