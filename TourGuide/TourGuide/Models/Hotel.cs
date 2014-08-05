@@ -12,10 +12,12 @@ namespace TourGuide.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    
     public partial class  Hotel
     {
         public int ID { get; set; }
         public int CityID { get; set; }
+        [Display(Name="Hotel")]
         public string Name { get; set; }
         public string Address { get; set; }
         [Display(Name="Zip Code")]
@@ -30,5 +32,8 @@ namespace TourGuide.Models
         public Nullable<decimal> Long { get; set; }
     
         public virtual Location Location { get; set; }
+    
+        //Add Collection
+        public virtual ICollection<Location> Locations { get; set; }
     }
 }

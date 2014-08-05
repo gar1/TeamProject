@@ -28,5 +28,10 @@ namespace TourGuide.Models
     
         public virtual ICollection<Hotel> Hotels { get; set; }
         public virtual ICollection<Restaurant> Restaurants { get; set; }
+       
+        
+        //Add virtual properties
+        public virtual Hotel Hotel { get; set; }
+        public virtual Restaurant Restaurant { get; set; }
     }
 }

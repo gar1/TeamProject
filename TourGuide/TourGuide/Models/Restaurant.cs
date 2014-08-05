@@ -17,6 +17,7 @@ namespace TourGuide.Models
     {
         public int ID { get; set; }
         public int CityID { get; set; }
+        [Display(Name="Restaurant")]
         public string Name { get; set; }
         public string Address { get; set; }
         [Display(Name="Zip Code")]
