@@ -11,13 +11,41 @@ using TourGuide.Models;
 namespace TourGuide.Controllers
 {
     public class LocationController : Controller
+
     {
+        
         private TourGuideEntities db = new TourGuideEntities();
 
         // GET: Location
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString)
         {
-            return View(db.Locations.ToList());
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.StateSortParm = sortOrder == "State" ? "state_desc" : "State";
+            
+
+            var locations = from l in db.Locations
+                           select l;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                locations = locations.Where(l => l.Name.ToUpper().Contains(searchString.ToUpper())
+                                       || l.State.ToUpper().Contains(searchString.ToUpper()));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    locations = locations.OrderByDescending(l => l.Name);
+                    break;
+                case "State":
+                    locations = locations.OrderBy(l => l.State);
+                    break;
+                case "state_desc":
+                    locations = locations.OrderByDescending(l => l.State);
+                    break;
+                default:
+                    locations = locations.OrderBy(l => l.Name);
+                    break;
+            }
+            return View(locations.ToList());
         }
 
         // GET: Location/Details/5
