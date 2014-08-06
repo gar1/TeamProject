@@ -13,11 +13,9 @@ namespace TourGuide.Controllers
     public class RestaurantController : Controller
     {
         private TourGuideEntities db = new TourGuideEntities();
-
-
         // GET: Restaurant
         public ActionResult Index(string sortOrder)
-        {
+        { 
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             var restaurants = from r in db.Restaurants
                            select r;
