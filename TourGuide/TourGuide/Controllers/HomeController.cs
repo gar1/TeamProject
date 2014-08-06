@@ -15,7 +15,8 @@ namespace TourGuide.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "The name of our company is TourGuide Inc.  This web application is a city guide to hotels and restaurants.";
+            ViewBag.Message = "The name of our company is TourGuide Inc.";
+            ViewBag.Message1 = "This web application is a city guide to hotels and restaurants.";
 
             return View();
         }
