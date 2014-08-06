@@ -18,8 +18,12 @@ namespace TourGuide.Controllers
         public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CitySortParm = sortOrder == "City" ? "city_desc" : "City";
+            ViewBag.StateSortParm = sortOrder == "State" ? "state_desc" : "State";
+            
             var hotels = from h in db.Hotels
                          select h;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 hotels = hotels.Where(h =>
@@ -29,6 +33,18 @@ namespace TourGuide.Controllers
             {
                 case "name_desc":
                     hotels = hotels.OrderByDescending(h => h.Name);
+                    break;
+                case "City":
+                    hotels = hotels.OrderBy(h => h.Location.Name);
+                    break;
+                case "city_desc":
+                    hotels = hotels.OrderByDescending(h => h.Location.Name);
+                    break;
+                case "State":
+                    hotels = hotels.OrderBy(h => h.Location.State);
+                    break;
+                case "state_desc":
+                    hotels = hotels.OrderByDescending(h => h.Location.State);
                     break;
                 default:
                     hotels = hotels.OrderBy(h => h.Name);
