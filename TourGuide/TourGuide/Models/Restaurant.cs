@@ -15,7 +15,9 @@ namespace TourGuide.Models
     
     public partial class Restaurant
     {
+        
         public int ID { get; set; }
+        [Display(Name="City")]
         public int CityID { get; set; }
         [Display(Name="Restaurant")]
         public string Name { get; set; }
