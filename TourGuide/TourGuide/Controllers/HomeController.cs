@@ -15,14 +15,14 @@ namespace TourGuide.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "The name of our company is TourGuide Inc.  This web application is a city guide to hotels and restaurants.";
+            ViewBag.Message = "Tour Guide Inc. is a city guide to all the hottest hotels and restaurants in your area.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Contact";
 
             return View();
         }
