@@ -1,14 +1,20 @@
 ﻿@model IEnumerable<TourGuide.Models.Restaurant>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Restaurant";
 }
 
-<h2>Index</h2>
+<h2>List of Restaurants</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p> Find by Restaurant Name: @Html.TextBox("SearchString") <input type="submit" value="Search" /></p>
+}
+
 <table class="table">
     <tr>
 
@@ -38,10 +44,10 @@
             @Html.DisplayNameFor(model => model.Long)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location.Name)
+            @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Location.State)
+            @Html.ActionLink("State", "Index", new { sortOrder = ViewBag.StateSortParm })
         </th>
         <th></th>
     </tr>

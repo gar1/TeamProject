@@ -16,15 +16,36 @@ namespace TourGuide.Controllers
 
 
         // GET: Restaurant
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.CitySortParm = sortOrder == "City" ? "city_desc" : "City";
+            ViewBag.StateSortParm = sortOrder == "State" ? "state_desc" : "State";
+
             var restaurants = from r in db.Restaurants
                            select r;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                restaurants = restaurants.Where(r => r.Name.ToUpper().Contains(searchString.ToUpper()));
+            }
+
             switch (sortOrder)
             {
                 case "name_desc":
                     restaurants = restaurants.OrderByDescending(r => r.Name);
+                    break;
+                case "City":
+                    restaurants = restaurants.OrderBy(r => r.Location.Name);
+                    break;
+                case "city_desc":
+                    restaurants = restaurants.OrderByDescending(r => r.Location.Name);
+                    break;
+                case "State":
+                    restaurants = restaurants.OrderBy(r => r.Location.State);
+                    break;
+                case "state_desc":
+                    restaurants = restaurants.OrderByDescending(r => r.Location.State);
                     break;
                 default:
                     restaurants = restaurants.OrderBy(r => r.Name);
