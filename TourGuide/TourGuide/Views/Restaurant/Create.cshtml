@@ -4,6 +4,39 @@
     ViewBag.Title = "Create";
 }
 
+<script type="text/javascript">
+    function validate() {
+        var error = false;
+        var errorList = "";
+        var name = document.getElementById("Name").value;
+        var address = document.getElementById("Address").value;
+        var phone = document.getElementById("Phone").value;
+
+        if (name === "") {
+            error = true;
+            errorList += "<li> The name of the restaurant is required </li>";
+        }
+
+        if (address === "") {
+            error = true;
+            errorList += "<li> The address of the restaurant is required </li>";
+        }
+
+        if (phone === "") {
+            error = true;
+            errorList += "<li> The phone number of the restaurant is required </li>";
+        }
+
+        if (error === true) {
+            var errorListElement = document.getElementById("errorList");
+            errorListElement.innerHTML = errorList;
+        } else {
+            var form = document.getElementById("registrationForm");
+            form.submit();
+        }
+    }
+</script>
+
 <h2>Create</h2>
 
 
@@ -86,13 +119,13 @@
                 @Html.ValidationMessageFor(model => model.Long, "", new { @class = "text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <ul id="errorList"></ul>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" value="Create" class="btn btn-default" onclick="validate();"/>
+                </div>
             </div>
         </div>
-    </div>
 }
 
 <div>
