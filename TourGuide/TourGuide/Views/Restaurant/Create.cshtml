@@ -31,7 +31,7 @@
             var errorListElement = document.getElementById("errorList");
             errorListElement.innerHTML = errorList;
         } else {
-            var form = document.getElementById("registrationForm");
+            var form = document.getElementById("createForm");
             form.submit();
         }
     }
@@ -40,7 +40,7 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" })) 
 {
     @Html.AntiForgeryToken()
     
