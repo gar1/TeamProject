@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using TourGuide.Models;
+using PagedList;
 
 namespace TourGuide.Controllers
 {
@@ -15,12 +16,23 @@ namespace TourGuide.Controllers
         private TourGuideEntities db = new TourGuideEntities();
 
         // GET: Hotel
-        public ActionResult Index(string sortOrder, string searchString)
+        public ActionResult Index(string sortOrder, string currentFilter, string searchString, int? page)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.CitySortParm = sortOrder == "City" ? "city_desc" : "City";
             ViewBag.StateSortParm = sortOrder == "State" ? "state_desc" : "State";
-            
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
             var hotels = from h in db.Hotels
                          select h;
 
@@ -51,7 +63,9 @@ namespace TourGuide.Controllers
                     break;
             }
 
-            return View(hotels.ToList());
+            int pageSize = 3;
+            int pageNumber = (page ?? 1);
+            return View(hotels.ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Hotel/Details/5

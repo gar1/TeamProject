@@ -1,4 +1,7 @@
-﻿@model IEnumerable<TourGuide.Models.Hotel>
+﻿@*@model IEnumerable<TourGuide.Models.Hotel>*@
+@model PagedList.IPagedList<TourGuide.Models.Hotel>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     ViewBag.Title = "Hotel";
@@ -9,9 +12,12 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Index", "Hotel", FormMethod.Get))
 {
-    <p> Find by Hotel Name: @Html.TextBox("SearchString") <input type="submit" value="Search" /></p>
+    <p>
+        Find by Hotel Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
 }
 <table class="table">
     <tr>
@@ -19,25 +25,25 @@
             @Html.ActionLink("Hotel", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Address)
+            Address
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ZipCode)
+            ZipCode
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Phone)
+            Phone
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.URL)
+            URL
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Rating)
+            Rating
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lat)
+            Lat
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Long)
+            Long
         </th>
         <th>
             @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
@@ -82,13 +88,25 @@
             </td>
             <td>
                 @Html.DisplayFor(model => item.Location.State)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-        </td>
-    </tr>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            </td>
+        </tr>
     }
 
 </table>
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+@Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page,
+        sortOrder = ViewBag.CurrentSort,
+        currentFilter =
+            ViewBag.CurrentFilter
+    }))
