@@ -46,15 +46,15 @@ namespace TourGuide
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "770734762949956",
+               appSecret: "11d1763945f70a4c46a1cc68f9b9b0b6");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "769061047868-2fl3nsnv5590aqpj29okufi2p8rppf8f.apps.googleusercontent.com",
+                ClientSecret = "WZYCwfktemlGQwgfJJIQSBVV"
+            });
         }
     }
 }
