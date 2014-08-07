@@ -11,7 +11,6 @@ using PagedList;
 using System.Data.Entity.Infrastructure;
 
 
-
 namespace TourGuide.Controllers
 {
     public class RestaurantController : Controller
@@ -33,7 +32,6 @@ namespace TourGuide.Controllers
             {
                 searchString = currentFilter;
             }
-
             ViewBag.CurrentFilter = searchString;
 
             var restaurants = from r in db.Restaurants
@@ -68,7 +66,6 @@ namespace TourGuide.Controllers
             int pageSize = 3; 
             int pageNumber = (page ?? 1); 
             return View(restaurants.ToPagedList(pageNumber, pageSize));
-
         }
 
 
