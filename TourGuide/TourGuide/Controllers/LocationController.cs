@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using TourGuide.Models;
 using PagedList;
 using System.Data.Entity.Infrastructure;
+using System.ComponentModel.DataAnnotations;
 
 namespace TourGuide.Controllers
 {
@@ -77,6 +78,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Location/Create
+        [Authorize(Users="teamproject@tourguide.com")]
         public ActionResult Create()
         {
             return View();
@@ -87,6 +89,7 @@ namespace TourGuide.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Create([Bind(Include = "ID,Name,State")] Location location)
         {
             if (ModelState.IsValid)
@@ -100,6 +103,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Location/Edit/5
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -119,6 +123,7 @@ namespace TourGuide.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Edit([Bind(Include = "ID,Name,State")] Location location)
         {
             if (ModelState.IsValid)
@@ -131,6 +136,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Location/Delete/5
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -148,6 +154,7 @@ namespace TourGuide.Controllers
         // POST: Location/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult DeleteConfirmed(int id)
         {
             Location location = db.Locations.Find(id);
