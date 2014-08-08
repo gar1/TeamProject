@@ -1,5 +1,6 @@
 ﻿@model PagedList.IPagedList<TourGuide.Models.Location>
 @using PagedList.Mvc;
+@using System.ComponentModel.DataAnnotations;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
     ViewBag.Title = "Index";
@@ -8,7 +9,11 @@
 <h2>Location</h2>
 
 <p>
+    @if(User.Identity.Name=="teamproject@tourguide.com")
+    { 
     @Html.ActionLink("Create New", "Create")
+    }
+   
 </p>
 
 @using (Html.BeginForm("Index", "Location", FormMethod.Get))
@@ -51,9 +56,18 @@
                     @Html.DisplayFor(modelItem => item.State)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+@if (User.Identity.Name == "teamproject@tourguide.com")
+{ 
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) 
+}
+&nbsp;
+@if (User.Identity.Name == "teamproject@tourguide.com")
+{
                     @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+}
+&nbsp;
+ 
+                    @Html.ActionLink("Details", "Details", new { id = item.ID })                    
                 </td>
             </tr>
         }
