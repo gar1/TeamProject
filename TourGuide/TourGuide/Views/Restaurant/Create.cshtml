@@ -11,7 +11,8 @@
         var name = document.getElementById("Name").value;
         var address = document.getElementById("Address").value;
         var phone = document.getElementById("Phone").value;
-
+        var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
+        var phoneIsValid = regExPhone.test(phone);
         if (name === "") {
             error = true;
             errorList += "<li> The name of the restaurant is required </li>";
@@ -25,6 +26,10 @@
         if (phone === "") {
             error = true;
             errorList += "<li> The phone number of the restaurant is required </li>";
+        }
+        else if (phoneIsValid === false) {
+            error = true;
+            errorList += "<li> The phone number is not entered correctly </li>";
         }
 
         if (error === true) {
