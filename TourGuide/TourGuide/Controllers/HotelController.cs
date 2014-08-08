@@ -84,6 +84,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Hotel/Create
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Create()
         {
             ViewBag.CityID = new SelectList(db.Locations, "ID", "Name", "State");
@@ -95,6 +96,7 @@ namespace TourGuide.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Create([Bind(Include = "ID,CityID,Name,Address,ZipCode,Phone,URL,Rating,Lat,Long")] Hotel hotel)
         {
             if (ModelState.IsValid)
@@ -109,6 +111,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Hotel/Edit/5
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -129,6 +132,7 @@ namespace TourGuide.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Edit([Bind(Include = "ID,CityID,Name,Address,ZipCode,Phone,URL,Rating,Lat,Long")] Hotel hotel)
         {
             if (ModelState.IsValid)
@@ -142,6 +146,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Hotel/Delete/5
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -159,6 +164,7 @@ namespace TourGuide.Controllers
         // POST: Hotel/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult DeleteConfirmed(int id)
         {
             Hotel hotel = db.Hotels.Find(id);

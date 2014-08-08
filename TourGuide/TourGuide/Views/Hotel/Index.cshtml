@@ -10,7 +10,10 @@
 <h2>List of Hotels</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @if (User.Identity.Name == "teamproject@tourguide.com")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 @using (Html.BeginForm("Index", "Hotel", FormMethod.Get))
 {
@@ -90,9 +93,19 @@
                 @Html.DisplayFor(model => item.Location.State)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+               @if (User.Identity.Name == "teamproject@tourguide.com")
+               {
+                @Html.ActionLink("Edit", "Edit", new { id = item.ID })
+               }
+            &nbsp;
+            @if (User.Identity.Name == "teamproject@tourguide.com")
+            {
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+            }
+            &nbsp;
+
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
+            
             </td>
         </tr>
     }
