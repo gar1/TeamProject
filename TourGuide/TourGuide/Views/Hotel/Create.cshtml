@@ -10,27 +10,47 @@
         var errorList = "";
         var name = document.getElementById("Name").value;
         var address = document.getElementById("Address").value;
+        var zipcode = document.getElementById("ZipCode").value;
         var phone = document.getElementById("Phone").value;
+        var url = document.getElementById("URL").value;
+        var rating = document.getElementById("Rating").value;
+        var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
+        var phoneIsValid = regExPhone.test(phone);
 
         if (name === "") {
             error = true;
-            errorList += "<li> The name of the hotel is required </li>";
+            errorList += "<li> The name of the Hotel is required. </li>";
         }
 
         if (address === "") {
             error = true;
-            errorList += "<li> The address of the hotel is required </li>";
+            errorList += "<li> The address of the Hotel is required. </li>";
+        }
+
+        if (isNaN(zipcode)) {
+            error = true;
+            errorList += "<li> The zip code of the Hotel must be numeric. </li>";
         }
 
         if (phone === "") {
             error = true;
-            errorList += "<li> The phone number of the hotel is required </li>";
+            errorList += "<li> The phone number of the Hotel is required. </li>";
+        }
+        else if (phoneIsValid === false) {
+            error = true;
+            errorList += "<li> The phone number is not entered correctly </li>";
+        }
+
+        if (isNaN(rating)) {
+            error = true;
+            errorList += "<li> The rating of the Hotel must be numeric. </li>";
         }
 
         if (error === true) {
             var errorListElement = document.getElementById("errorList");
             errorListElement.innerHTML = errorList;
-        } else {
+        }
+        else {
             var form = document.getElementById("createForm");
             form.submit();
         }
@@ -40,10 +60,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" })) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Hotel</h4>
         <hr />
@@ -116,13 +136,13 @@
             @Html.LabelFor(model => model.Long, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Long, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Long, "", new { @class = "text-danger" }) 
+                @Html.ValidationMessageFor(model => model.Long, "", new { @class = "text-danger" })
             </div>
         </div>
         <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Create" class="btn btn-default" onclick="validate();"/>
+                <input type="button" value="Create" class="btn btn-default" onclick="validate();" />
             </div>
         </div>
     </div>
