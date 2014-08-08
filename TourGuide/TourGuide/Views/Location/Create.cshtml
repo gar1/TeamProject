@@ -10,16 +10,29 @@
         var errorList = "";
         var city = document.getElementById("Name").value;
         var state = document.getElementById("State").value;
-        
+
+        var regCity = /^[a-zA-Z]{1,50}$/;
+        var cityIsValid = regCity.test(city);
+
+        var regState = /^[a-zA-Z]{1,50}$/;
+        var stateIsValid = regState.test(state);
 
         if (city === "") {
             error = true;
             errorList += "<li> The name of a city is required </li>";
         }
+        else if (cityIsValid === false) {
+            error = true;
+            errorList += "<li> The name must have case letters only.</li>";
+        }
 
         if (state === "") {
             error = true;
             errorList += "<li> The name of a state is required </li>";
+        }
+        else if (stateIsValid === false) {
+            error = true;
+            errorList += "<li> The name must have case letters only.</li>";
         }
 
         if (error === true) {
@@ -30,14 +43,14 @@
             form.submit();
         }
     }
-    </script>
+</script>
 <h2>Create</h2>
 
 
-@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" })) 
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" }))
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Location</h4>
         <hr />
@@ -60,7 +73,7 @@
         <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Create" class="btn btn-default" onclick="validate();"/>
+                <input type="button" value="Create" class="btn btn-default" onclick="validate();" />
             </div>
         </div>
     </div>
