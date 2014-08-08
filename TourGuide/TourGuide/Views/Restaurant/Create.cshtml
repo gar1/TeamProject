@@ -5,32 +5,59 @@
 }
 
 <script type="text/javascript">
-    function validate() {
+    function validate()
+    {
         var error = false;
         var errorList = "";
         var name = document.getElementById("Name").value;
         var address = document.getElementById("Address").value;
+        var zipcode = document.getElementById("ZipCode").value;
         var phone = document.getElementById("Phone").value;
+        var url = document.getElementById("URL").value;
+        var rating = document.getElementById("Rating").value;
 
-        if (name === "") {
+        if (name === "")
+        {
             error = true;
-            errorList += "<li> The name of the restaurant is required </li>";
+            errorList += "<li> The name of the restaurant is required. </li>";
         }
 
-        if (address === "") {
+        if (address === "")
+        {
             error = true;
-            errorList += "<li> The address of the restaurant is required </li>";
+            errorList += "<li> The address of the restaurant is required. </li>";
         }
 
-        if (phone === "") {
+        if (isNaN(zipcode))
+        {
             error = true;
-            errorList += "<li> The phone number of the restaurant is required </li>";
+            errorList += "<li> The zip code of the restaurant must be numeric. </li>";
         }
 
-        if (error === true) {
+        if (phone === "")
+        {
+            error = true;
+            errorList += "<li> The phone number of the restaurant is required. </li>";
+        }
+        if (url === "")
+        {
+            error = true;
+            errorList += "<li> The URL of the restaurant is required. </li>";
+        }
+
+        if (isNaN(rating))
+        {
+            error = true;
+            errorList += "<li> The rating of the restaurant must be numeric. </li>";
+        }
+
+        if (error === true)
+        {
             var errorListElement = document.getElementById("errorList");
             errorListElement.innerHTML = errorList;
-        } else {
+        }
+        else
+        {
             var form = document.getElementById("createForm");
             form.submit();
         }
