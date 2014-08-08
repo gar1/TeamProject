@@ -17,7 +17,9 @@
         var rating = document.getElementById("Rating").value;
         var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
         var phoneIsValid = regExPhone.test(phone);
-        if (name === "") {
+
+        if (name === "")
+        {
             error = true;
             errorList += "<li> The name of the restaurant is required. </li>";
         }
@@ -33,20 +35,16 @@
             error = true;
             errorList += "<li> The zip code of the restaurant must be numeric. </li>";
         }
-        else if (phoneIsValid === false) {
-            error = true;
-            errorList += "<li> The phone number is not entered correctly </li>";
-        }
 
         if (phone === "")
         {
             error = true;
             errorList += "<li> The phone number of the restaurant is required. </li>";
         }
-        if (url === "")
+        else if (phoneIsValid === false)
         {
             error = true;
-            errorList += "<li> The URL of the restaurant is required. </li>";
+            errorList += "<li> The phone number is not entered correctly </li>";
         }
 
         if (isNaN(rating))
