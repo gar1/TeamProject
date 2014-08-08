@@ -4,10 +4,51 @@
     ViewBag.Title = "Edit";
 }
 
+<script type="text/javascript">
+    function validate() {
+        var error = false;
+        var errorList = "";
+        var city = document.getElementById("Name").value;
+        var state = document.getElementById("State").value;
+
+        var regCity = /^[a-zA-Z]{1,50}$/;
+        var cityIsValid = regCity.test(city);
+
+        var regState = /^[a-zA-Z]{1,50}$/;
+        var stateIsValid = regState.test(state);
+
+        if (city === "") {
+            error = true;
+            errorList += "<li> The name of a city is required </li>";
+        }
+        else if (cityIsValid === false) {
+            error = true;
+            errorList += "<li> The name must have case letters only.</li>";
+        }
+
+        if (state === "") {
+            error = true;
+            errorList += "<li> The name of a state is required </li>";
+        }
+        else if (stateIsValid === false) {
+            error = true;
+            errorList += "<li> The name must have case letters only.</li>";
+        }
+
+        if (error === true) {
+            var errorListElement = document.getElementById("errorList");
+            errorListElement.innerHTML = errorList;
+        } else {
+            var form = document.getElementById("editForm");
+            form.submit();
+        }
+    }
+</script>
+
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
 {
     @Html.AntiForgeryToken()
     
@@ -32,10 +73,10 @@
                 @Html.ValidationMessageFor(model => model.State, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" value="Save" class="btn btn-default" onclick="validate();"/>
             </div>
         </div>
     </div>
