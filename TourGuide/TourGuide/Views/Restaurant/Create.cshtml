@@ -28,13 +28,13 @@
         var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
         var phoneIsValid = regExPhone.test(phone);
 
-        var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
+        var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
+      //var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
+      //var regExURL = /^\s*(http\:\/\/)?([a-z\d\-]{1,63}]\.)*[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
         var urlIsValid = regExURL.test(url);
 
         var regExRating = /^[1-5]{1}$/;
         var ratingIsValid = regExRating.test(rating);
-
-        
 
         if (name === "")
         {
@@ -74,7 +74,7 @@
             error = true;
             errorList += "<li> The phone number is not entered correctly.  Format example: 999-999-9999. </li>";
         }
-
+        
         if (urlIsValid === false)
         {
             error = true;

@@ -28,13 +28,13 @@
         var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
         var phoneIsValid = regExPhone.test(phone);
 
-        var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
+        var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
+        //var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
+        //var regExURL = /^\s*(http\:\/\/)?([a-z\d\-]{1,63}]\.)*[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
         var urlIsValid = regExURL.test(url);
 
         var regExRating = /^[1-5]{1}$/;
         var ratingIsValid = regExRating.test(rating);
-
-
 
         if (name === "")
         {
@@ -94,7 +94,7 @@
         }
         else
         {
-            var form = document.getElementById("createForm");
+            var form = document.getElementById("editForm");
             form.submit();
         }
     }
@@ -103,7 +103,7 @@
 <h2>Edit</h2>
 
 
-@using (Html.BeginForm())
+@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
 {
     @Html.AntiForgeryToken()
     
@@ -184,10 +184,10 @@
                 @Html.ValidationMessageFor(model => model.Long, "", new { @class = "text-danger" })
             </div>
         </div>
-
+        <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="button" value="Save" class="btn btn-default" onclick="validate();"/>
             </div>
         </div>
     </div>
