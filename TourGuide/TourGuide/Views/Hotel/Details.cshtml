@@ -1,9 +1,8 @@
 ﻿@model TourGuide.Models.Hotel
-<script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>
+@*<script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>*@
 @{
     ViewBag.Title = "Details";
 }
-
 <h2>Details</h2>
 
 <div>
@@ -59,7 +58,7 @@
             <input type="number" name="rating" id="rating" class="rating" />
         </dd>
 
-        <dt>
+        @*<dt>
             @Html.DisplayNameFor(model => model.Lat)
         </dt>
 
@@ -73,6 +72,14 @@
 
         <dd>
             @Html.DisplayFor(model => model.Long)
+        </dd>*@
+        <dt>
+            Map
+        </dt>
+        <dd>
+            <br />
+            <div id="map_canvas" style="width: 640px; height: 480px;">
+            </div>
         </dd>
 
         <dt>
@@ -96,3 +103,27 @@
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key = AIzaSyCvMv8C0DUwmoroqarxpF2SfuF6Y3MKgHA &sensor=false"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        initialize();
+    });
+    function initialize() {
+        var mapOptions = {
+            center: new google.maps.LatLng(@Html.DisplayFor(model => model.Lat) , @Html.DisplayFor(model => model.Long)),
+            zoom: 10,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+          mapOptions);
+        // create a marker
+        var latlng = new google.maps.LatLng(@Html.DisplayFor(model => model.Lat) , @Html.DisplayFor(model => model.Long));
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: 'My Place'
+        });
+    }
+</script>    
