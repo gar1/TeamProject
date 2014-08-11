@@ -47,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.URL)
+            <a href="http://@Html.DisplayFor(model => model.URL)">@Html.DisplayFor(model => model.URL)</a>
         </dd>
 
         <dt>
@@ -58,7 +58,7 @@
             @*@Html.DisplayFor(model => model.Rating)*@
             <input type="number" name="rating" id="rating" class="rating" />
         </dd>
-
+        a
         <dt>
             @Html.DisplayNameFor(model => model.Lat)
         </dt>
