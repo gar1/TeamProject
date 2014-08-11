@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Details";
 }
+
 <h2>Details</h2>
 
 <div>
@@ -46,7 +47,7 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.URL)
+            <a href="http://@Html.DisplayFor(model => model.URL)">@Html.DisplayFor(model => model.URL)</a>
         </dd>
 
         <dt>
@@ -58,7 +59,9 @@
             <input type="number" name="rating" id="rating" class="rating" />
         </dd>
 
+
         @*<dt>
+        <dt>
             @Html.DisplayNameFor(model => model.Lat)
         </dt>
 
