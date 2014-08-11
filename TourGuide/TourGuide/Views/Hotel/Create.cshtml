@@ -1,5 +1,5 @@
 ﻿@model TourGuide.Models.Hotel
-<script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>
+@*<script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>*@
 @{
     ViewBag.Title = "Create";
 }
@@ -13,7 +13,7 @@
         var zipcode = document.getElementById("ZipCode").value;
         var phone = document.getElementById("Phone").value;
         var url = document.getElementById("URL").value;
-        var rating = document.getElementById("Rating").value;
+        //var rating = document.getElementById("Rating").value;
 
         var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
         var phoneIsValid = regExPhone.test(phone);
@@ -30,8 +30,8 @@
         var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
         var urlIsValid = regExURL.test(url);
 
-        var regExRating = /^[1-5]{1}$/;
-        var ratingIsValid = regExRating.test(rating);
+        //var regExRating = /^[1-5]{1}$/;
+        //var ratingIsValid = regExRating.test(rating);
 
 
 
@@ -76,10 +76,10 @@
             errorList += "<li> The url is not entered correctly.  Format example: www.something.com</li>";
         }
 
-        if (ratingIsValid === false) {
-            error = true;
-            errorList += "<li> The rating is not entered correctly.  Must be one numeric digit between 1 to 5. </li>";
-        }
+        //if (ratingIsValid === false) {
+        //    error = true;
+        //    errorList += "<li> The rating is not entered correctly.  Must be one numeric digit between 1 to 5. </li>";
+        //}
 
         if (error === true) {
             var errorListElement = document.getElementById("errorList");
@@ -151,13 +151,13 @@
             </div>
         </div>
 
-        <div class="form-group">
+        @*<div class="form-group">
             @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             @Html.LabelFor(model => model.Lat, htmlAttributes: new { @class = "control-label col-md-2" })

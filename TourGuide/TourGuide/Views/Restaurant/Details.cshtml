@@ -11,6 +11,20 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
+            @Html.DisplayNameFor(model => model.Location.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.State)
+        </dd>
+        <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
 
@@ -84,21 +98,6 @@
             <br />
             <div id="map_canvas" style="width: 640px; height: 480px;">
             </div>
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.State)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location.State)
         </dd>
 
     </dl>
