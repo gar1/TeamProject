@@ -21,11 +21,11 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                     <li>@Html.ActionLink("Location", "Index", "Location")</li>
+                    <li>@Html.ActionLink("Location", "Index", "Location")</li>
                     <li>@Html.ActionLink("Hotel", "Index", "Hotel")</li>
                     <li>@Html.ActionLink("Restaurant", "Index", "Restaurant")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                 </ul>
+                </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
@@ -43,3 +43,26 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key = AIzaSyCvMv8C0DUwmoroqarxpF2SfuF6Y3MKgHA &sensor=false"></script>
+<script type="text/javascript">
+
+   $(document).ready(function () {
+     initialize();
+   });
+   function initialize() {
+     var mapOptions = {
+       center: new google.maps.LatLng(6.9167, 79.8473),
+       zoom: 10,
+       mapTypeId: google.maps.MapTypeId.ROADMAP
+     };
+     var map = new google.maps.Map(document.getElementById("map_canvas"),
+       mapOptions);
+     // create a marker
+     var latlng = new google.maps.LatLng(6.9167, 79.8473);
+     var marker = new google.maps.Marker({
+       position: latlng,
+       map: map,
+       title: 'My Place'
+     });
+   }
+</script>  

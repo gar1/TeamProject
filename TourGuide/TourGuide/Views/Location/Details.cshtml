@@ -3,7 +3,14 @@
 @{
     ViewBag.Title = "Details";
 }
-
+@{
+    ViewBag.Title = "Google Map API V3 with MVC4 Razor";
+}
+<h3>Google Maps Demo using MVC 4</h3>
+<br />
+<div id="map_canvas" style="width: 640px; height: 480px;">
+</div>
+<h2>Location</h2>
 <h2>Details</h2>
 
 <div>
@@ -27,31 +34,31 @@
 
 
 
-   
+
     </dl>
-    
+
     <table class="table">
-       <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Hotel.Name)
-        </th>
-         <th>
-            @Html.DisplayNameFor(model => model.Hotel.Address)
-          </th>
-           </tr>
-        @foreach (var item in Model.Hotels)
-        { 
         <tr>
-            <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hotel.Address)
+            </th>
         </tr>
+        @foreach (var item in Model.Hotels)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
         }
-        </table>
+    </table>
 
     <table class="table">
         <tr>
@@ -62,17 +69,17 @@
                 @Html.DisplayNameFor(model => model.Restaurant.Address)
             </th>
         </tr>
-       @foreach (var item in Model.Restaurants)
-       { 
-         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-        </tr>
-       }
+        @foreach (var item in Model.Restaurants)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+            </tr>
+        }
     </table>
 
 </div>
