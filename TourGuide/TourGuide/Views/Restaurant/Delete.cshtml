@@ -1,5 +1,5 @@
 ﻿@model TourGuide.Models.Restaurant
-
+<script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>
 @{
     ViewBag.Title = "Delete";
 }
@@ -56,7 +56,8 @@
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Rating)
+            @*@Html.DisplayFor(model => model.Rating)*@
+            <input type="number" name="rating" id="rating" class="rating" />
         </dd>
 
         <dt>
@@ -81,6 +82,13 @@
 
         <dd>
             @Html.DisplayFor(model => model.Location.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.State)
         </dd>
 
     </dl>
