@@ -96,24 +96,31 @@
                {
                 @Html.ActionLink("Edit", "Edit", new { id = item.ID })
                }
-            &nbsp;
+                &nbsp;
             @if (User.Identity.Name == "teamproject@tourguide.com")
             {
                 @Html.ActionLink("Delete", "Delete", new { id = item.ID })
             }
-            &nbsp;
-
+                &nbsp;
             @Html.ActionLink("Details", "Details", new { id = item.ID })
-            
+                &nbsp;
+                @Html.ActionLink("Select", "Index", new { id = item.ID })
             </td>
         </tr>
 }
 
 </table>
-<br /> 
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of 
-@Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index", 
-    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = 
-ViewBag.CurrentFilter }))
+
+    <br />
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+    @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+    new
+    {
+        page,
+        sortOrder = ViewBag.CurrentSort,
+        currentFilter =
+            ViewBag.CurrentFilter
+    }))
