@@ -28,8 +28,7 @@
         var regExPhone = /^\D?(\d{3})\D?\D?(\d{3})\D?(\d{4})$/;
         var phoneIsValid = regExPhone.test(phone);
 
-        var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
-      //var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
+        var regExURL = /^\s*www\.[a-zA-Z0-9\/\-]{1,255}\.[a-zA-Z0-9\/\-]{2,100}\s*$/;
       //var regExURL = /^\s*(http\:\/\/)?([a-z\d\-]{1,63}]\.)*[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
         var urlIsValid = regExURL.test(url);
 
