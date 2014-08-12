@@ -197,3 +197,29 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key = AIzaSyCvMv8C0DUwmoroqarxpF2SfuF6Y3MKgHA &sensor=false"></script>
+
+<script>
+    $(document).ready(function () {
+
+        $("#URL").blur(function () {
+            console.log('here');
+            var address = $("#Address").val();
+            var zip = $("#ZipCode").val();
+
+            var fullAddress = address + ", " + zip;
+
+            codeAddress(fullAddress);
+        });
+    });
+
+    function codeAddress(address) {
+        var geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                $("#Lat").val(results[0].geometry.location.k);
+                $("#Long").val(results[0].geometry.location.A);
+            }
+        });
+    }
+</script>

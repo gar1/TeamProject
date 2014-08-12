@@ -74,7 +74,7 @@
 
         @*<dt>
             @Html.DisplayNameFor(model => model.Lat)
-        </dt> 
+        </dt>  
 
         <dd>
             @Html.DisplayFor(model => model.Lat)
@@ -95,6 +95,11 @@
             <div id="map_canvas" style="width: 640px; height: 480px;">
             </div>
         </dd>
+        @*<dd>
+            <form onload="initialize()">
+                <div id="map-canvas" style="width: 320px; height: 480px;"></div>
+            </form>
+        </dd>*@
 
     </dl>
 </div>
@@ -122,7 +127,40 @@
         var marker = new google.maps.Marker({
             position: latlng,
             map: map,
-            title: 'My Place'
+            title: 'Location'
         });
     }
 </script>    
+
+@*<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key = AIzaSyCvMv8C0DUwmoroqarxpF2SfuF6Y3MKgHA &sensor=false"></script>
+<script type="text/javascript">
+    var geocoder;
+    var map;
+    function initialize() {
+        geocoder = new google.maps.Geocoder();
+        var latlng = new google.maps.LatLng(-34.397, 150.644);
+        var mapOptions = {
+            zoom: 8,
+            center: latlng
+        }
+        map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+        codeAddress();
+    }
+
+    function codeAddress() {
+        var address = document.getElementById("Address").value;
+        var zip = document.getElementById("Zipcode").value;
+        geocoder.geocode( { 'address': address}, {'zipcode': zip}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location
+                });
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+    }
+
+</script>*@
