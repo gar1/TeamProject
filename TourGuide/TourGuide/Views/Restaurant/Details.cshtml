@@ -70,7 +70,7 @@
 
         <dd>
             @*@Html.DisplayFor(model => model.Rating)*@
-            <input type="number" name="rating" id="rating" class="rating" />
+            <input type="number" name="Rating" id="Rating" class="rating"/>
         </dd>
 
 
@@ -115,7 +115,7 @@
     function initialize() {
         var mapOptions = {
             center: new google.maps.LatLng(@Html.DisplayFor(model => model.Lat) , @Html.DisplayFor(model => model.Long)),
-            zoom: 10,
+            zoom: 15,
             mapTypeId: google.maps.MapTypeId.ROADMAP
         };
         var map = new google.maps.Map(document.getElementById("map_canvas"),
