@@ -39,14 +39,14 @@
             error = true;
             errorList += "<li> The name of the Hotel is required. </li>";
         }
-        //else if (nameIsValid === false) {
-        //    error = true;
-        //    errorList += "<li> The name is too long.  Must be 50 characters or less.</li>";
-        //}
+        else if (nameIsValid === false) {
+            error = true;
+            errorList += "<li> The name is too long.  Must be 50 characters or less.</li>";
+        }
 
-        //if (address === "") {
-        //    error = true;
-        //    errorList += "<li> The address of the Hotel is required. </li>";
+        if (address === "") {
+            error = true;
+            errorList += "<li> The address of the Hotel is required. </li>";
         }
         else if (addIsValid === false) {
             error = true;
