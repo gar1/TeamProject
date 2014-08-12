@@ -14,7 +14,7 @@
         var zipcode = document.getElementById("ZipCode").value;
         var phone = document.getElementById("Phone").value;
         var url = document.getElementById("URL").value;
-        //var rating = document.getElementById("Rating").value;
+        var rating = document.getElementById("Rating").value;
 
         var regExName = /^[a-zA-Z0-9\s]{1,50}$/;
         var nameIsValid = regExName.test(name);
@@ -29,11 +29,10 @@
         var phoneIsValid = regExPhone.test(phone);
 
         var regExURL = /^\s*www\.[a-zA-Z0-9\/\-]{1,255}\.[a-zA-Z0-9\/\-]{2,100}\s*$/;
-      //var regExURL = /^\s*(http\:\/\/)?([a-z\d\-]{1,63}]\.)*[a-z\d\-]{1,255}\.[a-z]{2,6}\s*$/;
         var urlIsValid = regExURL.test(url);
 
-        //var regExRating = /^[1-5]{1}$/;
-        //var ratingIsValid = regExRating.test(rating);
+        var regExRating = /^[1-5]{1}$/;
+        var ratingIsValid = regExRating.test(rating);
 
         if (name === "")
         {
@@ -80,11 +79,11 @@
             errorList += "<li> The url is not entered correctly.  Format example: www.something.com</li>";
         }
 
-        //if (ratingIsValid === false)
-        //{
-        //    error = true;
-        //    errorList += "<li> The rating is not entered correctly.  Must be one numeric digit between 1 to 5. </li>";
-        //}
+        if (ratingIsValid === false)
+        {
+            error = true;
+            errorList += "<li> The rating is not entered correctly.  Must be one numeric digit between 1 to 5. </li>";
+        }
 
         if (error === true)
         {
@@ -160,13 +159,13 @@
             </div>
         </div>
 
-        @*<div class="form-group">
+        <div class="form-group">
             @Html.LabelFor(model => model.Rating, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Rating, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.Rating, "", new { @class = "text-danger" })
             </div>
-        </div>*@
+        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.Lat, htmlAttributes: new { @class = "control-label col-md-2" })

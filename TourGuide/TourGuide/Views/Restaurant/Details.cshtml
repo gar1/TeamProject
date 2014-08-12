@@ -69,8 +69,7 @@
         </dt>
 
         <dd>
-            @*@Html.DisplayFor(model => model.Rating)*@
-            <input type="number" name="Rating" id="Rating" class="rating"/>
+            <input type="number" name="Rating" id="Rating" class="rating" value="@Html.DisplayFor(model => model.Rating)" data-max="5" data-min="1"/>
         </dd>
 
 
