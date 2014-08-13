@@ -21,10 +21,10 @@
         var regZipCode = /^[0-9]{5}$/;
         var zipIsValid = regZipCode.test(zipcode);
 
-        var regAddress = /^[a-z-A-Z0-9\s]{1,50}$/;
+        var regAddress = /^[a-z-A-Z0-9\s\.\-]{1,50}$/;
         var addIsValid = regAddress.test(address);
 
-        var regName = /^[a-zA-Z0-9\s]{1,50}$/;
+        var regName = /^[a-zA-Z0-9\s\D]{1,50}$/;
         var nameIsValid = regName.test(name);
 
         var regExURL = /^\s*www\.[a-z\d\-]{1,255}\.com\s*$/;
@@ -50,7 +50,7 @@
         }
         else if (addIsValid === false) {
             error = true;
-            errorList += "<li> The address is too long.  Must be 50 characters or less.</li>";
+            errorList += "<li> The address is not entered correctly or is greater than 50 characters in length.</li>";
         }
 
         if (isNaN(zipcode)) {
