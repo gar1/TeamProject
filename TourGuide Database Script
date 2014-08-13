@@ -1,0 +1,182 @@
+USE [master]
+GO
+/****** Object:  Database [TourGuide]    Script Date: 8/12/2014 9:35:43 AM ******/
+CREATE DATABASE [TourGuide]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'TourGuide', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\TourGuide.mdf' , SIZE = 3072KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'TourGuide_log', FILENAME = N'C:\Program Files\Microsoft SQL Server\MSSQL12.SQLEXPRESS\MSSQL\DATA\TourGuide_log.ldf' , SIZE = 1024KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [TourGuide] SET COMPATIBILITY_LEVEL = 120
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [TourGuide].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [TourGuide] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [TourGuide] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [TourGuide] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [TourGuide] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [TourGuide] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [TourGuide] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [TourGuide] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [TourGuide] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [TourGuide] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [TourGuide] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [TourGuide] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [TourGuide] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [TourGuide] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [TourGuide] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [TourGuide] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [TourGuide] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [TourGuide] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [TourGuide] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [TourGuide] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [TourGuide] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [TourGuide] SET READ_COMMITTED_SNAPSHOT OFF 
+GO
+ALTER DATABASE [TourGuide] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [TourGuide] SET RECOVERY SIMPLE 
+GO
+ALTER DATABASE [TourGuide] SET  MULTI_USER 
+GO
+ALTER DATABASE [TourGuide] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [TourGuide] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [TourGuide] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [TourGuide] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [TourGuide] SET DELAYED_DURABILITY = DISABLED 
+GO
+USE [TourGuide]
+GO
+/****** Object:  Table [dbo].[Hotel]    Script Date: 8/12/2014 9:35:43 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Hotel](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CityID] [int] NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Address] [nvarchar](50) NOT NULL,
+	[ZipCode] [int] NULL,
+	[Phone] [nvarchar](20) NOT NULL,
+	[URL] [nvarchar](50) NULL,
+	[Rating] [int] NULL,
+	[Lat] [decimal](18, 15) NULL,
+	[Long] [decimal](18, 15) NULL,
+ CONSTRAINT [PK_Hotel] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Location]    Script Date: 8/12/2014 9:35:43 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Location](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[State] [nvarchar](50) NOT NULL,
+ CONSTRAINT [PK_Location] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+/****** Object:  Table [dbo].[Restaurant]    Script Date: 8/12/2014 9:35:43 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Restaurant](
+	[ID] [int] IDENTITY(1,1) NOT NULL,
+	[CityID] [int] NOT NULL,
+	[Name] [nvarchar](50) NOT NULL,
+	[Address] [nvarchar](50) NOT NULL,
+	[ZipCode] [int] NULL,
+	[Phone] [nvarchar](20) NOT NULL,
+	[URL] [nvarchar](50) NULL,
+	[Rating] [int] NULL,
+	[Lat] [decimal](18, 15) NULL,
+	[Long] [decimal](18, 15) NULL,
+ CONSTRAINT [PK_Restaurant] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+SET IDENTITY_INSERT [dbo].[Hotel] ON 
+
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (1, 1, N'Westin Book Cadillac Detroit', N'1114 Washington Blvd', 48226, N'313-442-1600', N'www.bookcadillacwestin.com', 4, CAST(42.339768000000000 AS Decimal(18, 15)), CAST(-83.053946000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (2, 1, N'Greektown Casino Hotel', N'555 E Lafayette Blvd', 48226, N'313-223-2999', N'www.greektowncasino.com', 3, CAST(42.339768000000000 AS Decimal(18, 15)), CAST(-83.053946000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (3, 2, N'Affinia Dumont Hotel', N'150 E 34th St', 10016, N'212-481-7600', N'www.affinia.com/dumont', 4, CAST(40.739519000000000 AS Decimal(18, 15)), CAST(-73.981002000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (4, 2, N'Four Seasons Hotel New York', N'57 E 57th St', 10022, N'212-758-5700', N'www.fourseasons.com/newyork/', 4, CAST(40.739519000000000 AS Decimal(18, 15)), CAST(-73.981002000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (5, 3, N'Miyako Hotel', N'328 E 1st St', 90012, N'213-617-2000', N'www.miyakoinn.com', 3, CAST(34.043272000000000 AS Decimal(18, 15)), CAST(-118.250364000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (6, 3, N'W Hollywood Hotel', N'6250 Hollywood Blvd', 90028, N'323-798-1300', N'www.whollywoodhotel.com', 3, CAST(34.043272000000000 AS Decimal(18, 15)), CAST(-118.250364000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (7, 3, N'Figueroa Hotel', N'939 S Figueroa St', 90015, N'213-627-8971', N'www.figueroahotel.com', 3, CAST(34.043272000000000 AS Decimal(18, 15)), CAST(-118.250364000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Hotel] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (8, 1, N'Atheneum Suite Hotel', N'1000 Brush St', 48226, N'313-962-2323', N'www.atheneumsuites.com', 3, CAST(42.339768000000000 AS Decimal(18, 15)), CAST(-83.053946000000000 AS Decimal(18, 15)))
+SET IDENTITY_INSERT [dbo].[Hotel] OFF
+SET IDENTITY_INSERT [dbo].[Location] ON 
+
+INSERT [dbo].[Location] ([ID], [Name], [State]) VALUES (1, N'Detroit', N'Michigan')
+INSERT [dbo].[Location] ([ID], [Name], [State]) VALUES (2, N'New York City', N'New York')
+INSERT [dbo].[Location] ([ID], [Name], [State]) VALUES (3, N'Los Angeles', N'California')
+INSERT [dbo].[Location] ([ID], [Name], [State]) VALUES (4, N'Dallas', N'Texas')
+SET IDENTITY_INSERT [dbo].[Location] OFF
+SET IDENTITY_INSERT [dbo].[Restaurant] ON 
+
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (1, 1, N'Bucharest Grill', N'2040 Park Ave', 48226, N'313-965-3111', N'www.bucharestgrill.com', 5, CAST(42.339768000000000 AS Decimal(18, 15)), CAST(-83.053946000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (2, 1, N'Roast', N'1128 Washington Blvd', 48226, N'313-442-1600', N'www.roastdetroit.com', 4, CAST(42.339768000000000 AS Decimal(18, 15)), CAST(-83.053946000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (3, 3, N'Bronzed Aussie', N'714 S Los Angeles St Suite 714 A', 90014, N'213-243-0770', N'www.bronzedaussie.us', 4, CAST(34.043272000000000 AS Decimal(18, 15)), CAST(-118.250364000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (4, 2, N'Chicken Provence', N'154 E 39th St', 10016, N'212-922-0505', N'www.chickenprovence.com', 4, CAST(40.739519000000000 AS Decimal(18, 15)), CAST(-73.981002000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (5, 2, N'Little Collins', N'667 Lexington Ave', 10022, N'212-308-1969', N'www.littlecollinsnyc.com', 4, CAST(40.739519000000000 AS Decimal(18, 15)), CAST(-73.981002000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (6, 2, N'Sushi Yasuda', N'204 E 43rd St', 10017, N'212-972-1001', N'www.sushiyasuda.com', 4, CAST(40.739519000000000 AS Decimal(18, 15)), CAST(-73.981002000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (7, 1, N'Test1', N'123 Test', 11111, N'111-111-1111', N'www.microsoft.com', 2, CAST(42.340000000000000 AS Decimal(18, 15)), CAST(-83.050000000000000 AS Decimal(18, 15)))
+INSERT [dbo].[Restaurant] ([ID], [CityID], [Name], [Address], [ZipCode], [Phone], [URL], [Rating], [Lat], [Long]) VALUES (8, 1, N'Test2', N'222 Test', 22222, N'2222222222', N'www.microsoft.com', 3, CAST(42.340000000000000 AS Decimal(18, 15)), CAST(-83.050000000000000 AS Decimal(18, 15)))
+SET IDENTITY_INSERT [dbo].[Restaurant] OFF
+ALTER TABLE [dbo].[Hotel]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_Location] FOREIGN KEY([CityID])
+REFERENCES [dbo].[Location] ([ID])
+GO
+ALTER TABLE [dbo].[Hotel] CHECK CONSTRAINT [FK_Hotel_Location]
+GO
+ALTER TABLE [dbo].[Restaurant]  WITH CHECK ADD  CONSTRAINT [FK_Restaurant_Location] FOREIGN KEY([CityID])
+REFERENCES [dbo].[Location] ([ID])
+GO
+ALTER TABLE [dbo].[Restaurant] CHECK CONSTRAINT [FK_Restaurant_Location]
+GO
+USE [master]
+GO
+ALTER DATABASE [TourGuide] SET  READ_WRITE 
+GO
