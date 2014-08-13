@@ -16,10 +16,10 @@
         var url = document.getElementById("URL").value;
         var rating = document.getElementById("Rating").value;
         
-        var regExName = /^[a-zA-Z0-9\s]{1,50}$/; 
+        var regExName = /^[a-zA-Z0-9\s\D]{1,50}$/;
         var nameIsValid = regExName.test(name);
 
-        var regExAddress = /^[a-zA-Z0-9\s]{1,50}$/;
+        var regExAddress = /^[a-zA-Z0-9\s\.\-]{1,50}$/;
         var addressIsValid = regExAddress.test(address);
 
         var regExZipCode = /^[0-9]{5}$/;
@@ -54,7 +54,7 @@
         else if (addressIsValid === false)
         {
             error = true;
-            errorList += "<li> The address is too long.  Must be 50 characters or less. </li>";
+            errorList += "<li> The address is not entered correctly or is greater than 50 characters in length. </li>";
         }
 
         if (zipcodeIsValid === false)
