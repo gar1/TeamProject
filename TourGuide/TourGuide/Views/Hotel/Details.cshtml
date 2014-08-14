@@ -3,90 +3,81 @@
 @{
     ViewBag.Title = "Details";
 }
-<h2>Details</h2>
 
-<div>
-    <h4>Hotel</h4>
-    <hr />
+<br/>
+<br />
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <h3 class="panel-title">@Html.DisplayFor(model => model.Name)</h3>
+    </div>
+    <div class="panel-body">
+
+        <div>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Location.Name)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location.State)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Location.State)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Address)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Address)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ZipCode)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ZipCode)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Phone)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Phone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.URL)
+                </dt>
+
+                <dd>
+                    <a href="http://@Html.DisplayFor(model => model.URL)">@Html.DisplayFor(model => model.URL)</a>
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </dt>
+                <dd>
+                    <input type="number" name="rating" id="rating" class="rating" value="@Html.DisplayFor(model => model.Rating)" data-max="5" data-min="1" />
+                </dd>
+                </dl>
+        </div>
+    </div>
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location.Name)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Location.State)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location.State)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Address)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Address)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ZipCode)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ZipCode)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Phone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Phone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.URL)
-        </dt>
-
-        <dd>
-            <a href="http://@Html.DisplayFor(model => model.URL)">@Html.DisplayFor(model => model.URL)</a>
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @*@Html.DisplayFor(model => model.Rating)*@
-            <input type="number" name="rating" id="rating" class="rating" value="@Html.DisplayFor(model => model.Rating)" data-max="5" data-min="1" />
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.Lat)
-        </dt>  
-
-        <dd>
-            @Html.DisplayFor(model => model.Lat)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Long)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Long)
-        </dd>*@
         <dt>
             Map
         </dt>
@@ -95,16 +86,15 @@
             <div id="map_canvas" style="width: 640px; height: 480px;">
             </div>
         </dd>
-        @*<dd>
-            <form onload="initialize()">
-                <div id="map-canvas" style="width: 320px; height: 480px;"></div>
-            </form>
-        </dd>*@
 
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @if (User.Identity.Name == "teamproject@tourguide.com")
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID })
+    }
+    &nbsp;
     @Html.ActionLink("Back to List", "Index")
 </p>
 

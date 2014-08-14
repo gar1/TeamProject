@@ -110,13 +110,14 @@
             </td>
         </tr>
     }
-
 </table>
 <br />
-Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
-@Model.PageCount
+<ul class="pagination pagination-sm">
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
+    @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
     new
     {
         page,
@@ -124,3 +125,4 @@ Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
         currentFilter =
             ViewBag.CurrentFilter
     }))
+</ul>
