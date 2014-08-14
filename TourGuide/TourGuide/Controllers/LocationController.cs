@@ -14,9 +14,8 @@ using System.ComponentModel.DataAnnotations;
 namespace TourGuide.Controllers
 {
     public class LocationController : Controller
-
     {
-        
+
         private TourGuideEntities db = new TourGuideEntities();
 
         // GET: Location
@@ -36,7 +35,7 @@ namespace TourGuide.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var locations = from l in db.Locations
-                           select l;
+                            select l;
             if (!String.IsNullOrEmpty(searchString))
             {
                 locations = locations.Where(l => l.Name.ToUpper().Contains(searchString.ToUpper())
@@ -78,7 +77,7 @@ namespace TourGuide.Controllers
         }
 
         // GET: Location/Create
-        [Authorize(Users="teamproject@tourguide.com")]
+        [Authorize(Users = "teamproject@tourguide.com")]
         public ActionResult Create()
         {
             return View();
@@ -94,6 +93,18 @@ namespace TourGuide.Controllers
         {
             if (ModelState.IsValid)
             {
+                var Locations = from l in db.Locations
+                                where l.Name == location.Name
+                                where l.State == location.State
+                                select l;
+
+                if (Locations.Any())
+                {
+                    ModelState.AddModelError("Name", "This city already exist.");
+                    return View(location);
+                }
+
+
                 db.Locations.Add(location);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -171,5 +182,7 @@ namespace TourGuide.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public string locations { get; set; }
     }
 }
