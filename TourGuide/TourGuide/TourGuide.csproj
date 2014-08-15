@@ -216,6 +216,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\dinner.jpg" />
     <Content Include="Images\facebook.png" />
+    <Content Include="Images\Garnett.jpg" />
     <Content Include="Images\google.png" />
     <Content Include="Images\hotel.jpg" />
     <Content Include="Images\icebar.jpg" />
@@ -224,7 +225,9 @@
     <Content Include="Images\pool.jpg" />
     <Content Include="Images\room.jpg" />
     <Content Include="Images\skyline.jpg" />
+    <Content Include="Images\Trish.jpg" />
     <Content Include="Images\twitter.png" />
+    <Content Include="Images\Tyrone.jpg" />
     <Content Include="Images\water.jpg" />
     <Content Include="Scripts\bootstrap-rating-input.min.js" />
     <Content Include="Scripts\bootstrap.js" />
