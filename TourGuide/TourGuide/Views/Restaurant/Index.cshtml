@@ -6,22 +6,23 @@
     ViewBag.Title = "Restaurant";
 }
 
-<h2>List of Restaurants</h2>
-
-<p>
-   @if (User.Identity.Name == "teamproject@tourguide.com")
-   {
-    @Html.ActionLink("Create New", "Create")
-   }
-</p>
+<h2>Restaurants</h2>
+<h4>Search for a specific restaurant <br /> to see if it is in the area</h4>
 
 @using (Html.BeginForm("Index", "Restaurant", FormMethod.Get))
 {
     <p>
-        Find by Restaurant Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        Search for a restaurant by name: <br />@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" class="btn-success" /><br />
     </p>
 }
+
+<p>
+    @if (User.Identity.Name == "teamproject@tourguide.com")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+</p>
 
 <table class="table">
     <tr>
@@ -30,27 +31,6 @@
             @Html.ActionLink("Restaurant", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
 
-        @*<th>
-            Address
-        </th>
-        <th>
-            ZipCode
-        </th>
-        <th>
-            Phone
-        </th>
-        <th>
-            URL
-        </th>
-        <th>
-            Rating
-        </th>
-        <th>
-            Lat
-        </th>
-        <th>
-            Long
-        </th>*@
         <th>
             @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
         </th>
@@ -65,27 +45,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.URL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Long)
-            </td>*@
+       
             <td>
                 @Html.DisplayFor(modelItem => item.Location.Name)
             </td>

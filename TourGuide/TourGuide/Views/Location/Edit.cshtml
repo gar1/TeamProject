@@ -1,7 +1,7 @@
 ﻿@model TourGuide.Models.Location
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Location";
 }
 
 <script type="text/javascript">
@@ -23,7 +23,7 @@
         }
         else if (cityIsValid === false) {
             error = true;
-            errorList += "<li> The name must have case letters only.</li>";
+            errorList += "<li> The name of the city must include alphabetical letters only</li>";
         }
 
         if (state === "") {
@@ -32,7 +32,7 @@
         }
         else if (stateIsValid === false) {
             error = true;
-            errorList += "<li> The name must have case letters only.</li>";
+            errorList += "<li> The name of the state must include alphabetical letters only</li>";
         }
 
         if (error === true) {
@@ -45,7 +45,7 @@
     }
 </script>
 
-<h2>Edit</h2>
+<h2>Edit Location</h2>
 
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
@@ -53,8 +53,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Location</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
 
@@ -76,7 +74,7 @@
         <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Save" class="btn btn-default" onclick="validate();"/>
+                <input type="button" value="Save" class="btn btn-success" onclick="validate();"/>
             </div>
         </div>
     </div>

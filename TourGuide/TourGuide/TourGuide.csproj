@@ -218,9 +218,11 @@
     <Content Include="Images\facebook.png" />
     <Content Include="Images\google.png" />
     <Content Include="Images\hotel.jpg" />
+    <Content Include="Images\icebar.jpg" />
     <Content Include="Images\linkedin.png" />
     <Content Include="Images\losangeles.jpg" />
     <Content Include="Images\pool.jpg" />
+    <Content Include="Images\room.jpg" />
     <Content Include="Images\skyline.jpg" />
     <Content Include="Images\twitter.png" />
     <Content Include="Images\water.jpg" />

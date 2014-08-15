@@ -1,5 +1,4 @@
-﻿ @*@model IEnumerable<TourGuide.Models.Hotel>*@
-@model PagedList.IPagedList<TourGuide.Models.Hotel>
+﻿@model PagedList.IPagedList<TourGuide.Models.Hotel>
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 <script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>
@@ -7,7 +6,16 @@
     ViewBag.Title = "Hotel";
 }
 
-<h2>List of Hotels</h2> 
+<h2>Hotels</h2> 
+<h4>Search for a specific hotel <br/> to see if it is in the area</h4>
+
+@using (Html.BeginForm("Index", "Hotel", FormMethod.Get))
+{
+    <p>
+    Search for a hotel by name: <br />@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Search" class="btn-success" /><br />
+    </p>
+}
 
 <p>
     @if (User.Identity.Name == "teamproject@tourguide.com")
@@ -15,46 +23,17 @@
         @Html.ActionLink("Create New", "Create")
     }
 </p>
-@using (Html.BeginForm("Index", "Hotel", FormMethod.Get))
-{
-    <p>
-        Find by Hotel Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
-}
+
 <table class="table">
     <tr>
         <th>
             @Html.ActionLink("Hotel", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
-        @*<th>
-            Address
-        </th>
-        <th>
-            ZipCode
-        </th>
-        <th>
-            Phone
-        </th>
-        <th>
-            URL
-        </th>
-        <th>
-            Rating
-        </th>
-        <th>
-            Lat
-        </th>
-        <th>
-            Long
-        </th>*@
         <th>
             @Html.ActionLink("City", "Index", new { sortOrder = ViewBag.CitySortParm })
-            @*@Html.DisplayNameFor(model => model.Location.Name)*@
         </th>
         <th>
             @Html.ActionLink("State", "Index", new { sortOrder = ViewBag.StateSortParm })
-            @*@Html.DisplayNameFor(model => model.Location.State)*@
         </th>
         <th></th>
     </tr>
@@ -65,28 +44,6 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ZipCode)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.URL)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Rating)
-                <input type="number" name="rating" id="rating" class="rating" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lat)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Long)
-            </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.Location.Name)
             </td>

@@ -100,7 +100,7 @@ namespace TourGuide.Controllers
 
                 if (Locations.Any())
                 {
-                    ModelState.AddModelError("Name", "This city already exist.");
+                    ModelState.AddModelError("Name", "This city already exists.");
                     return View(location);
                 }
 

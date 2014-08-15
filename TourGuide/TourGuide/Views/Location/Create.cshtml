@@ -1,7 +1,7 @@
 ﻿@model TourGuide.Models.Location
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create Location";
 }
 
 <script type="text/javascript">
@@ -23,7 +23,7 @@
         }
         else if (cityIsValid === false) {
             error = true;
-            errorList += "<li> The name must have case letters only.</li>";
+            errorList += "<li> The name of the city must include alphabetical letters only</li>";
         }
 
         if (state === "") {
@@ -32,7 +32,7 @@
         }
         else if (stateIsValid === false) {
             error = true;
-            errorList += "<li> The name must have case letters only.</li>";
+            errorList += "<li> The name of the state must include alphabetical letters only</li>";
         }
 
         if (error === true) {
@@ -44,7 +44,7 @@
         }
     }
 </script>
-<h2>Create</h2>
+<h2>Create Location</h2>
 
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "createForm" }))
@@ -52,8 +52,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Location</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -73,7 +71,7 @@
         <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Create" class="btn btn-default" onclick="validate();" />
+                <input type="button" value="Create" class="btn btn-success" onclick="validate();" />
             </div>
         </div>
     </div>

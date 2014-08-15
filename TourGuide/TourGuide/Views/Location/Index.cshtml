@@ -3,26 +3,27 @@
 @using System.ComponentModel.DataAnnotations;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Location";
 }
 
-<h2>Location</h2>
-
-<p>
-    @if(User.Identity.Name=="teamproject@tourguide.com")
-    { 
-    @Html.ActionLink("Create New", "Create")
-    }
-   
-</p>
+<h2>Where are you staying?</h2>
+<h4>Check out a list of hotels <br /> and restaurants within that city</h4>
 
 @using (Html.BeginForm("Index", "Location", FormMethod.Get))
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
+        Search for a city by name: <br />@Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" class="btn-success"/><br />
     </p>
 }
+
+<p>
+    @if (User.Identity.Name == "teamproject@tourguide.com")
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
+
+</p>
 
 <table class="table">
     <tr>
@@ -34,18 +35,7 @@
         </th>
         <th></th>
     </tr>
-</table>
 
-    <table class="table">
-        @*<tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.State)
-            </th>
-            <th></th>
-        </tr>*@
         @foreach (var item in Model)
         {
             <tr>
@@ -77,11 +67,12 @@
 Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of
 @Model.PageCount
 
-@Html.PagedListPager(Model, page => Url.Action("Index",
+@Html.PagedListPager(Model, page => Url.Action("Index", 
     new
     {
         page,
         sortOrder = ViewBag.CurrentSort,
         currentFilter =
             ViewBag.CurrentFilter
+            
     }))

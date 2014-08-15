@@ -1,7 +1,7 @@
 ﻿@model TourGuide.Models.Restaurant
 <script src="~/Scripts/bootstrap-rating-input.min.js" type="text/javascript"></script>
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Restaurant";
 }
 
 <script type="text/javascript">
@@ -37,52 +37,52 @@
         if (name === "")
         {
             error = true;
-            errorList += "<li> The name of the restaurant is required. </li>";
+            errorList += "<li> The name of the restaurant is required </li>";
         }
         else if (nameIsValid === false)
         {
             error = true;
-            errorList += "<li> The name is too long.  Must be 50 characters or less. </li>";
+            errorList += "<li> The restaurant name is too long (must be 50 characters or less) </li>";
         }
 
         if (address === "")
         {
             error = true;
-            errorList += "<li> The address of the restaurant is required. </li>";
+            errorList += "<li> The address of the restaurant is required </li>";
         }
         else if (addressIsValid === false)
         {
             error = true;
-            errorList += "<li> The address is not entered correctly or is greater than 50 characters in length. </li>";
+            errorList += "<li> The address is not entered correctly and/or greater than 50 characters in length. </li>";
         }
 
         if (zipcodeIsValid === false)
         {
             error = true;
-            errorList += "<li> The zip code is not entered correctly.  Must be five numeric digits. </li>";
+            errorList += "<li> The zip code is not entered correctly (must be five numeric digits) </li>";
         }
 
         if (phone === "")
         {
             error = true;
-            errorList += "<li> The phone number of the restaurant is required. </li>";
+            errorList += "<li> The phone number of the restaurant is required </li>";
         }
         else if (phoneIsValid === false)
         {
             error = true;
-            errorList += "<li> The phone number is not entered correctly.  Format example: 999-999-9999. </li>";
+            errorList += "<li> The phone number is not entered correctly (ex. 313-555-1111) </li>";
         }
 
         if (urlIsValid === false)
         {
             error = true;
-            errorList += "<li> The url is not entered correctly.  Format example: www.something.com</li>";
+            errorList += "<li> The url is not entered correctly (ex. www.example.com)</li>";
         }
 
         if (ratingIsValid === false)
         {
             error = true;
-            errorList += "<li> The rating is not entered correctly.  Must be one numeric digit between 1 to 5. </li>";
+            errorList += "<li> The rating is not entered correctly (must be one numeric digit between 1 to 5) </li>";
         }
 
         if (error === true)
@@ -98,7 +98,7 @@
     }
 </script>
 
-<h2>Edit</h2>
+<h2>Edit Restaurant</h2>
 
 
 @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "editForm" }))
@@ -106,8 +106,6 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Restaurant</h4>
-        <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.ID)
 
@@ -185,7 +183,7 @@
         <ul id="errorList"></ul>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="button" value="Save" class="btn btn-default" onclick="validate();"/>
+                <input type="button" value="Save" class="btn btn-success" onclick="validate();"/>
             </div>
         </div>
     </div>
